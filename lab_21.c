@@ -10,12 +10,12 @@ void function(int signal) {
 		printf("\nYou tried to quit the stuff for %d times\n", cnt);
 		exit(1);
 	}
-    else if (signal == SIGINT) {
-        printf("%c", '\07');
+    if (signal == SIGINT) {
+        //write(STDOUT_FILENO, "\07", sizeof(char));
+        //write("%c", '\07');
+        printf("%c\n", '\07');
         cnt++;
     }
-     printf("%c", '\07');
-        cnt++;
 }
 
 int main() {
