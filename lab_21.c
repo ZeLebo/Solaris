@@ -3,13 +3,19 @@
 #include <stdlib.h>
 #include <unistd.h>
 
+
 int cnt = 0;
 void function(int signal) {
 	if (signal == SIGQUIT) {
-		printf("You tried to quit the stuff for %d times\n", cnt);
+		printf("\nYou tried to quit the stuff for %d times\n", cnt);
 		exit(1);
 	}
-	cnt++;
+    else if (signal == SIGINT) {
+        printf("%c", '\07');
+        cnt++;
+    }
+     printf("%c", '\07');
+        cnt++;
 }
 
 int main() {
