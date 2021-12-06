@@ -11,8 +11,6 @@ void function(int signal) {
 		exit(1);
 	}
     if (signal == SIGINT) {
-        //write(STDOUT_FILENO, "\07", sizeof(char));
-        //write("%c", '\07');
         printf("%c\n", '\07');
         cnt++;
     }
