@@ -16,12 +16,10 @@ int main() {
     int cnt = 0;
     while (fgets(line, BUFSIZ, input) != (char *) NULL) {
         if (line[0] == '\n') {
-            cnt++;
             fputs(line, output);
         }
     }
     fclose(input);
-    printf("%d\n", cnt);
     pclose(output);
     return 0;
 }
