@@ -13,11 +13,12 @@ int main(){
         struct sockaddr_un addr;
         int server, client, lines;
         server = socket(AF_UNIX, SOCK_STREAM, 0);
-        char buff[BUFSIZ];
         if (server == -1){
                 perror("An error occured while creating the socket");
                 exit(-1);
         }
+        
+        char buff[BUFSIZ];
         printf("Socket was made successfully\n");
         memset(&addr, 0, sizeof(addr));
         addr.sun_family = AF_UNIX;
@@ -27,6 +28,7 @@ int main(){
                 perror("Not able to bind a socket");
                 exit(-1);
         }
+
         if (listen(server, 1) == -1){
                 perror("Not able to listen");
                 exit(-1);
@@ -40,19 +42,19 @@ int main(){
                 exit(-1);
         }
 
-        printf("The output from the client:\n");
+        printf("The output from the client:\n\n");
         while((lines = read(client, buff, BUFSIZ)) != 0) {
                 for(int i = 0; i < lines; ++i){
                         printf("%c", toupper(buff[i]));
                 }
         }
-        /*
+        
         if (lines == -1) {
                 perror("Something went wrong");
                 exit(-1);
         }
-        */
+
         close(client); close(server);
-        printf("Shuting down\n");
+        printf("\nShuting down\n");
         exit(0);
 }
